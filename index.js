@@ -207,7 +207,7 @@ const checkAnswer = (inputedAnswer) => {
 const initMathToScreen = () => {
 
   if(equationType === '' || level === '') {
-    document.getElementById('equation').innerHTML = `<p class="equationPrompt"> Pick your level and math type above to start game.</p>`
+    document.getElementById('equation').innerHTML = `<p class="equationPrompt"> Pick your level and math type above to start your game.</p>`
     document.getElementById('answerInputForm').classList.add('hide')
   } else {
     document.getElementById('answerInputForm').classList.remove('hide')
