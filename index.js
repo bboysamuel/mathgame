@@ -1,8 +1,51 @@
 
   let fullEquationData = {}
-  const correctAnswers = []
+  let correctAnswersList = []
+  let correctAnswersSetsList
+  let maxSetOfCorrectAnswers = 2
+  let maxNumberOfCorrectAnswersToMakeASet = 3
   let level = ''
   let equationType = ''
+
+  // https://developers.google.com/youtube/iframe_api_reference#Playback_status
+  const videoList = [
+    // {videoTitle: "sammy Styles trailer"},
+    'jK8I37sHQjg',
+    '7-Fe9bzDVAk',
+    'xAtvik8N_8c',
+    'GtpUesWmJkI',
+    // kids videos short
+    // https://www.youtube.com/watch?v=uONIJ5TQ2DA - math song easy
+    // https://www.youtube.com/watch?v=ZHAqT4hXnMw story bots
+    // https://www.youtube.com/watch?v=3w-I-WRYlqE story bots theme song
+    // https://www.youtube.com/watch?v=i235Y2HRksA story bots song moon
+    // https://www.youtube.com/watch?v=GOR4YDdY9dk story bot song dino
+    // https://www.youtube.com/watch?v=KECKqtKZXEE story bot dino
+    // https://www.youtube.com/watch?v=uqYfyza4e-c story bot dino
+    // https://www.youtube.com/watch?v=633OgEaFbDk
+    // https://www.youtube.com/watch?v=WRvX67aPHZo
+    // https://www.youtube.com/watch?v=t-kzdR93bqw
+    // https://www.youtube.com/watch?v=2S2WmgPKIi0
+    // https://www.youtube.com/watch?v=Mzs40SdIabE
+    // https://www.youtube.com/watch?v=cp2AtBECmEs
+    // https://www.youtube.com/watch?v=xdYZNe7_GGA
+    // https://www.youtube.com/watch?v=S-ngtAg9tW4
+    // https://www.youtube.com/watch?v=3lglFs99juc
+    // https://www.youtube.com/watch?v=G0HkkG09koE
+    //https://www.youtube.com/watch?v=cp2AtBECmEs
+    // https://www.youtube.com/watch?v=2p6EJNRIHYw
+    // https://www.youtube.com/watch?v=kvpPmHtZwOs
+    // https://www.youtube.com/watch?v=zOJtGOsXX_U
+    // https://www.youtube.com/watch?v=TBmZjOHrVJ0
+    // https://www.youtube.com/watch?v=do5vkwjO0pI
+    // https://www.youtube.com/watch?v=ZfICoMlHmdg
+
+
+
+
+
+
+  ]
 
   const selectLevel = (e) => {
     // level = ''
@@ -180,6 +223,37 @@ const getAnswer = (e) => {
 
 }
 
+
+const runVideo = (setNumber) => {
+  console.log('videolistid', videoList[setNumber])
+
+  document.getElementById('framedVideoToPlay').src = `https://www.youtube.com/embed/${videoList[setNumber]}`
+
+
+
+}
+
+const videoPlayer = () => {
+
+
+
+}
+
+
+const addCorrectAnswerToAnswerList = (inputedAnswer) => {
+  if(correctAnswersList.length < maxSetOfCorrectAnswers) {
+    correctAnswersList.push(inputedAnswer)
+    console.log('correctAnswersList', correctAnswersList)
+  } else {
+    //play video // when video is done remove video and wipe out correctanswer list
+
+    console.log('maxSetOfCorrectAnswers', maxSetOfCorrectAnswers)
+    runVideo(0)
+  }
+
+
+}
+
 const checkAnswer = (inputedAnswer) => {
 
   const answerMessageElement = document.getElementById('answerMessage')
@@ -192,7 +266,7 @@ const checkAnswer = (inputedAnswer) => {
   if (inputedAnswer === fullEquationData.answer) {
 
     answerMessageElement.innerHTML = correctAnswerMessage
-    correctAnswers.push(answer)
+    addCorrectAnswerToAnswerList(inputedAnswer)
 
 
   } else {
@@ -206,14 +280,18 @@ const checkAnswer = (inputedAnswer) => {
 
 const initMathToScreen = () => {
 
+  const answerInputForm = document.getElementById('answerInputForm')
   if(equationType === '' || level === '') {
     document.getElementById('equation').innerHTML = `<p class="equationPrompt"> Pick your level and math type above to start your game.</p>`
-    document.getElementById('answerInputForm').classList.add('hide')
+    answerInputForm.classList.add('hide')
   } else {
-    document.getElementById('answerInputForm').classList.remove('hide')
+    answerInputForm.classList.remove('hide')
     const finalEquation = createMathEquation(level, equationType)
     const equation = `${finalEquation.equation} = `
     document.getElementById('equation').innerHTML = equation
+    // answerInputForm.focus()
+    document.getElementById('answerInput').focus()
+
   }
 
   console.log('level', level, 'equationType', equationType)
@@ -225,7 +303,6 @@ const nextButton = (e) => {
   e.preventDefault()
   clearInputs()
   initMathToScreen()
-
 
 }
 
