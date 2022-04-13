@@ -48,7 +48,10 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
@@ -92,7 +95,10 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-contentLevel a:hover {background-color: #ddd;}
+.dropdown-contentLevel a:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-contentLevel {display: block;}
@@ -110,6 +116,15 @@
    color: white;
    height: 3rem;
    border: none;
+  }
+
+  a:hover {
+    cursor: pointer;
+
+  }
+  button:hover {
+    cursor: pointer;
+
   }
 
  #answerInput {
@@ -140,4 +155,13 @@
  .footer {
    padding: 3rem;
    color: lightgray;
+ }
+
+ #answerInput {
+    /* text-decoration: underline; */
+    border-bottom: 2px solid black;
+ }
+
+ #player {
+   border: 3px solid red;
  }
