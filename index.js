@@ -2,13 +2,13 @@
   // import { correctAnswerVideoList }  from './db/videoLists.js'
   let fullEquationData = {}
   let correctAnswersList = []
-  let correctAnswersSetsList
-  let maxSetOfCorrectAnswers = 2
-  let maxNumberOfCorrectAnswersToMakeASet = 3
+  let correctAnswersSetsList = []
+  let maxSetOfCorrectAnswers = 1
+  let maxNumberOfCorrectAnswersToMakeASet = 1
   let level = ''
   let equationType = ''
   let videoIdx = 5
-  console.log('videoIdx top', videoIdx)
+  // console.log('videoIdx top', videoIdx)
 
 
 
@@ -363,7 +363,8 @@ const runVideo = (setNumber) => {
 
   // do the logic to change video id. switch to hide.
   document.getElementById('videoToPlay').classList.remove('hide')
-
+  // console.log('videoIdx 1', videoIdx)
+  // videoIdx = videoIdx +1
 
 
 }
@@ -374,14 +375,14 @@ const runVideo = (setNumber) => {
 const addCorrectAnswerToAnswerList = (inputedAnswer) => {
   if(correctAnswersList.length < maxSetOfCorrectAnswers) {
     correctAnswersList.push(inputedAnswer)
-    console.log('correctAnswersList', correctAnswersList)
+    // console.log('correctAnswersList', correctAnswersList)
   } else {
     //play video // when video is done remove video and wipe out correctanswer list
 
-    console.log('maxSetOfCorrectAnswers', maxSetOfCorrectAnswers)
-    videoIdx = videoIdx +1
-    console.log('videoIdx in addCorrectAnswerToAnswerList', videoIdx)
-    runVideo(videoIdx)
+    // console.log('maxSetOfCorrectAnswers', maxSetOfCorrectAnswers)
+    // videoIdx = videoIdx +1
+    // console.log('videoIdx in addCorrectAnswerToAnswerList', videoIdx)
+    runVideo()
   }
 
 
@@ -432,10 +433,26 @@ const initMathToScreen = () => {
 
 }
 
+const nextVideo = () => {
+    // end video
+
+    // go to next.
+    videoIdx = videoIdx + 1
+
+    // hide video section
+    document.getElementById('videoToPlay').classList.add('hide')
+
+    // clear array
+    correctAnswersList = []
+
+
+}
+
 const nextButton = (e) => {
   e.preventDefault()
   clearInputs()
   initMathToScreen()
+  // end video
 
 }
 
@@ -461,76 +478,81 @@ const clearInputs = () => {
 
 // }
 
-// console.log('videoID', videoId)
-var tag = document.createElement('script');
-console.log('tag', tag)
+// // console.log('videoID', videoId)
+// var tag = document.createElement('script');
+// console.log('tag', tag)
 
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+// tag.src = "https://www.youtube.com/iframe_api";
+// var firstScriptTag = document.getElementsByTagName('script')[0];
+// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: `${correctAnswerVideoList[videoIdx].ytId}`, //"M7lc1UVf-VE", //'cp2AtBECmEs', //`${videoToPlayVideoId}`,
-    playerVars: {
-      'playsinline': 1 // 0 gets rid of extra videos? rel 0.
-      // 'rel': 0
-    },
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-
-
-  console.log('player', player)
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-  // event.target.playVideo();
-
-}
-
-if(document.getElementById('videoToPlay').classList.contains('hide')) {
-  console.log('hahaha')
-  // event.target.playVideo();
-  player.playVideo();
-}
+// // 3. This function creates an <iframe> (and YouTube player)
+// //    after the API code downloads.
+// var player;
+// function onYouTubeIframeAPIReady() {
+//   player = new YT.Player('player', {
+//     height: '390',
+//     width: '640',
+//     videoId: `${correctAnswerVideoList[videoIdx].ytId}`, //"M7lc1UVf-VE", //'cp2AtBECmEs', //`${videoToPlayVideoId}`,
+//     playerVars: {
+//       'playsinline': 1 // 0 gets rid of extra videos? rel 0.
+//       // 'rel': 0
+//     },
+//     events: {
+//       'onReady': onPlayerReady,
+//       'onStateChange': onPlayerStateChange
+//     }
+//   });
 
 
-var done = false;
-function onPlayerStateChange(event) {
+//   console.log('player', player)
 
-  const currentTimeOnPlayer = player.getCurrentTime()
-  const totalVideoDurration = player.getDuration()
-// console.log('currentTimeOnPlayer', currentTimeOnPlayer)
-// console.log('totalVideoDurration', totalVideoDurration)
+// // 4. The API will call this function when the video player is ready.
+// function onPlayerReady(event) {
+//   // event.target.playVideo();
 
-if(currentTimeOnPlayer === totalVideoDurration) {
-  console.log('ended!!!!', currentTimeOnPlayer)
-  document.getElementById('videoToPlay').classList.add('hide') // hide div
-  player.stopVideo(); // stop video playing
-  // console.log('videoIdx 1', videoIdx)
+// }
 
-}
-
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-  }
+// if(document.getElementById('videoToPlay').classList.contains('hide')) {
+//   console.log('hahaha')
+//   // event.target.playVideo();
+//   // player.playVideo();
+// }
 
 
-}
-function stopVideo() {
-  player.stopVideo();
+// var done = false;
+// function onPlayerStateChange(event) {
 
-}
+//   const currentTimeOnPlayer = player.getCurrentTime()
+//   const totalVideoDurration = player.getDuration()
+// // console.log('currentTimeOnPlayer', currentTimeOnPlayer)
+// // console.log('totalVideoDurration', totalVideoDurration)
 
-}
+// if(currentTimeOnPlayer === totalVideoDurration) {
+//   console.log('ended!!!!', currentTimeOnPlayer)
+//   player.stopVideo();
+//   document.getElementById('videoToPlay').classList.add('hide') // hide div
+//    // stop video playing
+//   console.log('videoIdx 1', videoIdx)
+//   // videoIdx = videoIdx +1
+//   // console.log('videoIdx 2', videoIdx)
+// nextVideo()
+
+
+// }
+
+//   if (event.data == YT.PlayerState.PLAYING && !done) {
+//     setTimeout(stopVideo, 6000);
+//     done = true;
+//   }
+
+
+// }
+// function stopVideo() {
+//   player.stopVideo();
+
+// }
+
+// }
 
 
