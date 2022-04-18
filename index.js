@@ -3,7 +3,7 @@
   let fullEquationData = {}
   let correctAnswersList = []
   let correctAnswersSetsList = []
-  let maxSetOfCorrectAnswers = 1
+  let maxSetOfCorrectAnswers = 9
   let maxNumberOfCorrectAnswersToMakeASet = 1
   let level = 1
   let equationType = 'addition'
@@ -415,7 +415,7 @@ const checkAnswer = (inputedAnswer) => {
 
   const correctAnswerMessage = `Great Job! ${inputedAnswer} is correct.`
 
-  const wrongAnswerMessage = `${inputedAnswer} is not correct. Please try again`
+  const wrongAnswerMessage = `Not ${inputedAnswer}. Please try again`
 
 
   if (inputedAnswer === fullEquationData.answer) {
@@ -429,6 +429,9 @@ const checkAnswer = (inputedAnswer) => {
     answerMessageElement.innerHTML = wrongAnswerMessage
 
   }
+
+  document.getElementById('answerInput').focus()
+
 
 }
 
