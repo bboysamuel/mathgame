@@ -14,8 +14,8 @@
   <div id="app">
 
     <h2>Welcome To Elia's Math Game</h2>
-    <h2>Ready To Play?</h2>
-    <h4>Answer 10 questions correctly and you get to watch a cool video</h4>
+    <!-- <h2>Ready To Play?</h2> -->
+    <!-- <h4>Answer 10 questions correctly and you get to watch a cool video</h4> -->
     <div id="optionsButtons">
       <div class="dropdown">
         <button id="dropbtnLevel" class="dropbtnLevel">Level</button>
@@ -59,19 +59,21 @@
 
       <form class="equation" id="answerInputForm">
         <input type="text" id="answerInput">
-        <button onclick="getAnswer(event)">Enter</button>
+        <!-- <button onclick="getAnswer(event)">Enter</button> -->
       </form>
 
     </div>
 
-    <div id="buttons">
-      <button onclick="nextButton(event)">Next </button>
+    <div id="buttons" class="buttons">
+      <button class="submitButton" onclick="getAnswer(event)">Submit Answer</button>
+
+      <button class="nextButton" onclick="nextButton(event)">Next Question </button>
     </div>
 
 
     <div class="footer">
       <p>copyright 2022 Sam mckaig</p>
-      <a href="https://github.com/bboysamuel/mathgame">project</a>
+      <p> <a href="https://github.com/bboysamuel/mathgame">Github</a> </p>
 
     </div>
 

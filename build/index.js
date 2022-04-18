@@ -7,7 +7,7 @@
   let maxNumberOfCorrectAnswersToMakeASet = 1
   let level = 1
   let equationType = 'addition'
-  let videoIdx = 5
+  let videoIdx = 0
 
 
     const initDom = () => {
@@ -26,25 +26,35 @@
   // https://developers.google.com/youtube/iframe_api_reference#Playback_status
   //
   const correctAnswerVideoList = [
+        // {
+        //   videoTitle: "sammy Styles trailer",
+        //   ytId: 'jK8I37sHQjg',
+        //   url: 'https://www.youtube.com/watch?v=jK8I37sHQjg'
+        // },
+        // {
+        //   videoTitle: "sammy Styles trailer",
+        //   ytId: '7-Fe9bzDVAk',
+        //   url: 'https://www.youtube.com/watch?v=7-Fe9bzDVAk'
+        // },
+        // {
+        //   videoTitle: "sammy Styles trailer",
+        //   ytId: '7-Fe9bzDVAk',
+        //   url: 'https://www.youtube.com/watch?v=xAtvik8N_8c'
+        // },
+        // {
+        //   videoTitle: "sammy Styles trailer",
+        //   ytId: 'GtpUesWmJkI',
+        //   url: 'https://www.youtube.com/watch?v=GtpUesWmJkI'
+        // },
         {
-          videoTitle: "sammy Styles trailer",
-          ytId: 'jK8I37sHQjg',
-          url: 'https://www.youtube.com/watch?v=jK8I37sHQjg'
+          videoTitle: "story bots",
+          ytId: 'uqYfyza4e-c',
+          url: 'https://www.youtube.com/watch?v=uqYfyza4e-c'
         },
         {
-          videoTitle: "sammy Styles trailer",
-          ytId: '7-Fe9bzDVAk',
-          url: 'https://www.youtube.com/watch?v=7-Fe9bzDVAk'
-        },
-        {
-          videoTitle: "sammy Styles trailer",
-          ytId: '7-Fe9bzDVAk',
-          url: 'https://www.youtube.com/watch?v=xAtvik8N_8c'
-        },
-        {
-          videoTitle: "sammy Styles trailer",
-          ytId: 'GtpUesWmJkI',
-          url: 'https://www.youtube.com/watch?v=GtpUesWmJkI'
+          videoTitle: "story bots",
+          ytId: '633OgEaFbDk',
+          url: 'https://www.youtube.com/watch?v=633OgEaFbDk'
         },
         {
           videoTitle: "math music video",
@@ -75,16 +85,6 @@
           videoTitle: "story bots",
           ytId: 'KECKqtKZXEE',
           url: 'https://www.youtube.com/watch?v=KECKqtKZXEE'
-        },
-        {
-          videoTitle: "story bots",
-          ytId: 'uqYfyza4e-c',
-          url: 'https://www.youtube.com/watch?v=uqYfyza4e-c'
-        },
-        {
-          videoTitle: "story bots",
-          ytId: '633OgEaFbDk',
-          url: 'https://www.youtube.com/watch?v=633OgEaFbDk'
         },
         {
           videoTitle: "story bots",
@@ -415,7 +415,7 @@ const checkAnswer = (inputedAnswer) => {
 
   const correctAnswerMessage = `Great Job! ${inputedAnswer} is correct.`
 
-  const wrongAnswerMessage = `${inputedAnswer} is not correct. Please try again`
+  const wrongAnswerMessage = `Not ${inputedAnswer}. Please try again`
 
 
   if (inputedAnswer === fullEquationData.answer) {
@@ -429,6 +429,9 @@ const checkAnswer = (inputedAnswer) => {
     answerMessageElement.innerHTML = wrongAnswerMessage
 
   }
+
+  document.getElementById('answerInput').focus()
+
 
 }
 
