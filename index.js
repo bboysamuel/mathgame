@@ -489,6 +489,7 @@ const nextButton = (e) => {
   initMathToScreen()
   // do a check if it's hidden
   let equationContainer = document.getElementById('equationContainer')
+  removeHelp(e)
 
   if(equationContainer.classList.contains('hide')) {
     console.log('its hidden')

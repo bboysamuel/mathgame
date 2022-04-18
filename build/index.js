@@ -593,3 +593,29 @@ const autoGenerateAnswers = (finalEquation) => {
 
 }
 
+const getHelp = (e) => {
+  e.preventDefault();
+  document.getElementById('getHelp').innerHTML = `
+    <button onclick="removeHelp(event)">Remove Help</button>
+    <div id="framedModal" class="framedModal">
+      <iframe src="https://apps.mathlearningcenter.org/number-pieces" style="width: 800; height: 600;"></iframe>
+    </div>
+  `
+}
+
+const removeHelp = (e) => {
+  e.preventDefault();
+  document.getElementById('getHelp').innerHTML = `
+    <button onclick="getHelp(event)">Get Help?</button>
+    <div id="framedModal" class="framedModal">
+    </div>
+  `
+}
+
+
+{/* <div id="getHelp" class="framedModal">
+<button onclick="getHelp(event)">need help?</button>
+<div id="framedModal" class="framedModal"></div>
+</div> */}
+
+

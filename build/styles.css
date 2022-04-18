@@ -176,3 +176,7 @@
  .submitButton {
    background-color: red;
  }
+
+ .framedModal {
+   padding-top: 5rem;
+ }
