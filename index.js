@@ -3,13 +3,23 @@
   let fullEquationData = {}
   let correctAnswersList = []
   let correctAnswersSetsList = []
-  let maxSetOfCorrectAnswers = 1
+  let maxSetOfCorrectAnswers = 0
   let maxNumberOfCorrectAnswersToMakeASet = 1
-  let level = ''
-  let equationType = ''
+  let level = 1
+  let equationType = 'addition'
   let videoIdx = 5
-  // console.log('videoIdx top', videoIdx)
 
+
+    const initDom = () => {
+      let levelButtonElement = document.getElementById('dropbtnLevel')
+      levelButtonElement.innerHTML = `Level ${level}`
+
+      const mathTypeButtonMathType = document.getElementById('dropbtnMathType')
+      mathTypeButtonMathType.innerHTML = `${equationType}`
+
+    }
+
+    initDom()
 
 
 
@@ -159,22 +169,17 @@
 
       ]
 
-      // const returnNewCorrectAnswerVideoId = () => {
-      //   let videoIdx = 0
-      //   correctAnswerVideoList.forEach(video => {
-      //     return video.ytId
-      //   })
-      // }
+
 
 
   const selectLevel = (e) => {
     // level = ''
     level = Number(e.target.innerHTML)
         // ### TODO - set to screen You are on level 1.
-        if(level !== '') {
-          const levelButtonElement = document.getElementById('dropbtnLevel')
+        // if(level !== '') {
+          let levelButtonElement = document.getElementById('dropbtnLevel')
           levelButtonElement.innerHTML = `Level ${level}`
-        }
+        // }
 
     // console.log('level', level)
     initMathToScreen()
@@ -186,14 +191,12 @@
     // equationType.push(e.target.innerHTML) // NOTE: TODO. to do multiple make an array later.
     equationType = e.target.innerHTML
 
-    if(equationType !== '') {
+    // if(equationType !== '') {
       const mathTypeButtonMathType = document.getElementById('dropbtnMathType')
       mathTypeButtonMathType.innerHTML = `${equationType}`
-    }
+    // }
 
-    // ### TODO - set to screen - you are doing subtraction
-    // later make it .data-equationtype
-    // console.log('equationType', equationType)
+
     initMathToScreen()
 
   }
@@ -338,9 +341,7 @@ const createMathEquation = (level, type) => {
       break;
   }
 
-
   return fullEquationData
-
 
 }
 
@@ -363,6 +364,9 @@ const runVideo = (setNumber) => {
 
   // do the logic to change video id. switch to hide.
   document.getElementById('videoToPlay').classList.remove('hide')
+  document.getElementById('equationContainer').classList.add('hide')
+
+
   // console.log('videoIdx 1', videoIdx)
   // videoIdx = videoIdx +1
 
@@ -392,7 +396,7 @@ const checkAnswer = (inputedAnswer) => {
 
   const answerMessageElement = document.getElementById('answerMessage')
 
-  const correctAnswerMessage = `Great Job. ${inputedAnswer} is the correct answer.`
+  const correctAnswerMessage = `Great Job! ${inputedAnswer} is correct.`
 
   const wrongAnswerMessage = `${inputedAnswer} is not correct. Please try again`
 
@@ -434,17 +438,19 @@ const initMathToScreen = () => {
 }
 
 const nextVideo = () => {
-    // end video
 
-    // go to next.
-    videoIdx = videoIdx + 1
+    if (videoIdx === correctAnswerVideoList.length) {
+      videoIdx = 0
+    } else {
+      videoIdx = videoIdx + 1
+    }
 
-    // hide video section
     document.getElementById('videoToPlay').classList.add('hide')
+    document.getElementById('equationContainer').classList.remove('hide')
+    clearInputs()
+    initMathToScreen()
 
-    // clear array
     correctAnswersList = []
-
 
 }
 
@@ -452,7 +458,6 @@ const nextButton = (e) => {
   e.preventDefault()
   clearInputs()
   initMathToScreen()
-  // end video
 
 }
 
@@ -472,87 +477,5 @@ const clearInputs = () => {
 // ============================
 
 
-
-// const videoPlayer = (videoId) => {
-
-
-// }
-
-// // console.log('videoID', videoId)
-// var tag = document.createElement('script');
-// console.log('tag', tag)
-
-// tag.src = "https://www.youtube.com/iframe_api";
-// var firstScriptTag = document.getElementsByTagName('script')[0];
-// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// // 3. This function creates an <iframe> (and YouTube player)
-// //    after the API code downloads.
-// var player;
-// function onYouTubeIframeAPIReady() {
-//   player = new YT.Player('player', {
-//     height: '390',
-//     width: '640',
-//     videoId: `${correctAnswerVideoList[videoIdx].ytId}`, //"M7lc1UVf-VE", //'cp2AtBECmEs', //`${videoToPlayVideoId}`,
-//     playerVars: {
-//       'playsinline': 1 // 0 gets rid of extra videos? rel 0.
-//       // 'rel': 0
-//     },
-//     events: {
-//       'onReady': onPlayerReady,
-//       'onStateChange': onPlayerStateChange
-//     }
-//   });
-
-
-//   console.log('player', player)
-
-// // 4. The API will call this function when the video player is ready.
-// function onPlayerReady(event) {
-//   // event.target.playVideo();
-
-// }
-
-// if(document.getElementById('videoToPlay').classList.contains('hide')) {
-//   console.log('hahaha')
-//   // event.target.playVideo();
-//   // player.playVideo();
-// }
-
-
-// var done = false;
-// function onPlayerStateChange(event) {
-
-//   const currentTimeOnPlayer = player.getCurrentTime()
-//   const totalVideoDurration = player.getDuration()
-// // console.log('currentTimeOnPlayer', currentTimeOnPlayer)
-// // console.log('totalVideoDurration', totalVideoDurration)
-
-// if(currentTimeOnPlayer === totalVideoDurration) {
-//   console.log('ended!!!!', currentTimeOnPlayer)
-//   player.stopVideo();
-//   document.getElementById('videoToPlay').classList.add('hide') // hide div
-//    // stop video playing
-//   console.log('videoIdx 1', videoIdx)
-//   // videoIdx = videoIdx +1
-//   // console.log('videoIdx 2', videoIdx)
-// nextVideo()
-
-
-// }
-
-//   if (event.data == YT.PlayerState.PLAYING && !done) {
-//     setTimeout(stopVideo, 6000);
-//     done = true;
-//   }
-
-
-// }
-// function stopVideo() {
-//   player.stopVideo();
-
-// }
-
-// }
 
 

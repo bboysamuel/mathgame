@@ -4,7 +4,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <script type="text/javascript" src="index.js">  </script>
   <!-- <script type="text/javascript" src="video.js">  </script> -->
   <!-- <script type="text/javascript" src="db/videoLists.js">  </script> -->
 
@@ -39,20 +38,21 @@
     </div>
 
     <!-- <div id="player"></div> -->
+    <div id="answerMessageContainer" >
+      <p id="answerMessage"></p>
+    </div>
     <div id="videoToPlay" class="hide">
       <div id="player"></div>
 
 
        <!-- <p> hidden</p> -->
-     <iframe id="framedVideoToPlay" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     <!-- <iframe id="framedVideoToPlay" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
    </div>
 
-    <div id="answerMessageContainer">
-      <p id="answerMessage"></p>
-    </div>
 
 
-    <div id="equationContainer">
+
+    <div id="equationContainer" class="show">
       <p class="equation" id="equation"></p>
 
       <form class="equation" id="answerInputForm">
@@ -79,6 +79,9 @@
 
 </body>
 </html>
+
+<script type="text/javascript" src="index.js">  </script>
+
 
 <script>
 
@@ -122,12 +125,12 @@ var done = false;
 function onPlayerStateChange(event) {
   if (event.data === 0) {
     player.stopVideo();
-    console.log('video idx 1', videoIdx)
-
     nextVideo()
-    console.log('ended vid idx 2!!!!', videoIdx)
-
     done = true;
+    player.loadVideoById(correctAnswerVideoList[videoIdx].ytId)
+    player.stopVideo();
+
+
   }
 
 
