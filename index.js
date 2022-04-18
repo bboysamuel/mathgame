@@ -3,7 +3,7 @@
   let fullEquationData = {}
   let correctAnswersList = []
   let correctAnswersSetsList = []
-  let maxSetOfCorrectAnswers = 0
+  let maxSetOfCorrectAnswers = 9
   let maxNumberOfCorrectAnswersToMakeASet = 1
   let level = 1
   let equationType = 'addition'
@@ -278,19 +278,34 @@ const doMultiply = (numToRandomize) => {
 
 }
 
+const divisionData = (a, b) => {
+  let answer
+  let equation
+        if(a % b === 0) {
+          answer = a / b
+          equation = `${a} / ${b}`
+      }
+}
+
 const doDivide = (numToRandomize) => {
     const numOne = Math.floor(Math.random() * numToRandomize)
     const numTwo = Math.floor(Math.random() * numToRandomize)
     const type = '/'
-    // const answer = numOne / numTwo
-    // const equation = `${numOne} / ${numTwo}`
+    let answer = numOne / numTwo
+    let equation = `${numOne} / ${numTwo}`
 
     if (numOne > numTwo) {
-      answer = numOne / numTwo
-      equation = `${numOne} / ${numTwo}`
+      if(numOne % numTwo === 0) {
+        answer = numOne / numTwo
+        equation = `${numOne} / ${numTwo}`
+      }
+
    } else {
+    if(numOne % numTwo === 0) {
       answer = numTwo / numOne
       equation = `${numTwo} / ${numOne}`
+    }
+
    }
 
 
@@ -301,6 +316,8 @@ const doDivide = (numToRandomize) => {
     answer: answer,
     equation: equation,
   }
+
+  console.log('equationData', equationData)
 
   return equationData
 
@@ -425,6 +442,11 @@ const initMathToScreen = () => {
   } else {
     answerInputForm.classList.remove('hide')
     const finalEquation = createMathEquation(level, equationType)
+    // do answers here
+    // const randomWrongAnswers = autoGenerateAnswers(finalEquation)
+    // const correctAnswer = finalEquation.answer
+    // console.log('randomWrongAnswers initMathToScreen', randomWrongAnswers)
+    // console.log('randomWrongAnswers initMathToScreen', correctAnswer)
     const equation = `${finalEquation.equation} = `
     document.getElementById('equation').innerHTML = equation
     // answerInputForm.focus()
@@ -444,10 +466,14 @@ const nextVideo = () => {
     } else {
       videoIdx = videoIdx + 1
     }
+    console.log('videoIdx4', videoIdx)
+
 
     document.getElementById('videoToPlay').classList.add('hide')
     document.getElementById('equationContainer').classList.remove('hide')
     clearInputs()
+    player.loadVideoById(correctAnswerVideoList[videoIdx].ytId)
+    player.stopVideo();
     initMathToScreen()
 
     correctAnswersList = []
@@ -458,6 +484,13 @@ const nextButton = (e) => {
   e.preventDefault()
   clearInputs()
   initMathToScreen()
+  // do a check if it's hidden
+  let equationContainer = document.getElementById('equationContainer')
+
+  if(equationContainer.classList.contains('hide')) {
+    console.log('its hidden')
+    nextVideo()
+  }
 
 }
 
@@ -467,7 +500,62 @@ const clearInputs = () => {
 }
 
 
+// const makeYoutubeVideo = () => {
+  // 2. This code loads the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
 
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+var player;
+function onYouTubeIframeAPIReady() {
+player = new YT.Player('player', {
+  height: '390',
+  width: '640',
+  videoId: `${correctAnswerVideoList[videoIdx].ytId}`, // 'M7lc1UVf-VE',
+  playerVars: {
+    'playsinline': 1
+  },
+  events: {
+    // 'onReady': onPlayerReady,
+    'onStateChange': onPlayerStateChange
+  }
+});
+}
+
+// 4. The API will call this function when the video player is ready.
+// function onPlayerReady(event) {
+//   event.target.playVideo();
+// }
+
+// 5. The API calls this function when the player's state changes.
+//    The function indicates that when playing a video (state=1),
+//    the player should play for six seconds and then stop.
+var done = false;
+function onPlayerStateChange(event) {
+if (event.data === 0) {
+  player.stopVideo();
+  nextVideo()
+  done = true;
+  player.loadVideoById(correctAnswerVideoList[videoIdx].ytId)
+  player.stopVideo();
+
+
+}
+
+
+}
+
+function stopVideo() {
+player.stopVideo();
+}
+
+// }
+
+// makeYoutubeVideo()
 
 // make largest number always 1st.
 //make egg hatch.
@@ -477,5 +565,28 @@ const clearInputs = () => {
 // ============================
 
 
+const autoGenerateAnswers = (finalEquation) => {
+  console.log('finalEquation1', finalEquation)
+  const randomAnswersArray = []
 
+  do {
+    const randomNumHigher =  Math.floor(Math.random() * 4 ) + finalEquation.answer
+    randomAnswersArray.push(randomNumHigher)
+    const randomNumLower =  finalEquation.answer - 7 + Math.floor(Math.random() * 4 )
+
+    if (randomNumHigher !== randomNumLower  && !finalEquation.answer === randomNumHigher && !finalEquation.answer === randomNumLower) {
+      randomAnswersArray.push(randomNumHigher)
+      randomAnswersArray.push(randomNumLower)
+    }
+
+
+
+    // const numOne = Math.floor(Math.random() * numToRandomize)
+
+  } while (randomAnswersArray.length < 4)
+  console.log('randomAnswersArray', randomAnswersArray)
+  console.log('finalEquation.answer', finalEquation.answer)
+
+
+}
 
