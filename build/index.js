@@ -3,11 +3,11 @@
   let fullEquationData = {}
   let correctAnswersList = []
   let correctAnswersSetsList = []
-  let maxSetOfCorrectAnswers = 1
+  let maxSetOfCorrectAnswers = 9
   let maxNumberOfCorrectAnswersToMakeASet = 1
   let level = 1
   let equationType = 'addition'
-  let videoIdx = 0
+  let videoIdx = 5
 
 
     const initDom = () => {
@@ -26,35 +26,25 @@
   // https://developers.google.com/youtube/iframe_api_reference#Playback_status
   //
   const correctAnswerVideoList = [
-        // {
-        //   videoTitle: "sammy Styles trailer",
-        //   ytId: 'jK8I37sHQjg',
-        //   url: 'https://www.youtube.com/watch?v=jK8I37sHQjg'
-        // },
-        // {
-        //   videoTitle: "sammy Styles trailer",
-        //   ytId: '7-Fe9bzDVAk',
-        //   url: 'https://www.youtube.com/watch?v=7-Fe9bzDVAk'
-        // },
-        // {
-        //   videoTitle: "sammy Styles trailer",
-        //   ytId: '7-Fe9bzDVAk',
-        //   url: 'https://www.youtube.com/watch?v=xAtvik8N_8c'
-        // },
-        // {
-        //   videoTitle: "sammy Styles trailer",
-        //   ytId: 'GtpUesWmJkI',
-        //   url: 'https://www.youtube.com/watch?v=GtpUesWmJkI'
-        // },
         {
-          videoTitle: "story bots",
-          ytId: 'uqYfyza4e-c',
-          url: 'https://www.youtube.com/watch?v=uqYfyza4e-c'
+          videoTitle: "sammy Styles trailer",
+          ytId: 'jK8I37sHQjg',
+          url: 'https://www.youtube.com/watch?v=jK8I37sHQjg'
         },
         {
-          videoTitle: "story bots",
-          ytId: '633OgEaFbDk',
-          url: 'https://www.youtube.com/watch?v=633OgEaFbDk'
+          videoTitle: "sammy Styles trailer",
+          ytId: '7-Fe9bzDVAk',
+          url: 'https://www.youtube.com/watch?v=7-Fe9bzDVAk'
+        },
+        {
+          videoTitle: "sammy Styles trailer",
+          ytId: '7-Fe9bzDVAk',
+          url: 'https://www.youtube.com/watch?v=xAtvik8N_8c'
+        },
+        {
+          videoTitle: "sammy Styles trailer",
+          ytId: 'GtpUesWmJkI',
+          url: 'https://www.youtube.com/watch?v=GtpUesWmJkI'
         },
         {
           videoTitle: "math music video",
@@ -85,6 +75,16 @@
           videoTitle: "story bots",
           ytId: 'KECKqtKZXEE',
           url: 'https://www.youtube.com/watch?v=KECKqtKZXEE'
+        },
+        {
+          videoTitle: "story bots",
+          ytId: 'uqYfyza4e-c',
+          url: 'https://www.youtube.com/watch?v=uqYfyza4e-c'
+        },
+        {
+          videoTitle: "story bots",
+          ytId: '633OgEaFbDk',
+          url: 'https://www.youtube.com/watch?v=633OgEaFbDk'
         },
         {
           videoTitle: "story bots",

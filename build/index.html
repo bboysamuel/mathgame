@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <!-- <script type="text/javascript" src="video.js">  </script> -->
+  <!-- <script type="text/javascript" src="db/videoLists.js">  </script> -->
+
+  <title>math game by sam</title>
+</head>
+<body>
+
+  <div id="app">
+
+    <h2>Welcome To Elia's Math Game</h2>
+    <h2>Ready To Play?</h2>
+    <h4>Answer 10 questions correctly and you get to watch a cool video</h4>
+    <div id="optionsButtons">
+      <div class="dropdown">
+        <button id="dropbtnLevel" class="dropbtnLevel">Level</button>
+        <div class="dropdown-contentLevel">
+          <a onclick="selectLevel(event)" id="btnLevel1">1</a>
+          <a onclick="selectLevel(event)" id="btnLevel2">2</a>
+          <a onclick="selectLevel(event)" id="btnLevel3">3</a>
+          <a onclick="selectLevel(event)" id="btnLevel4">4</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button id="dropbtnMathType" class="dropbtn dropbtnMathType">Math Type</button>
+        <div class="dropdown-content">
+          <a onclick="selectEquationType(event)" id="btnAddition">addition</a>
+          <a onclick="selectEquationType(event)" id="btnSubtraction">subtraction</a>
+          <a onclick="selectEquationType(event)" id="btnMultiplication">multiplication</a>
+          <!-- <a onclick="selectEquationType(event)" id="btnDivision">division</a> -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div id="player"></div> -->
+    <div id="answerMessageContainer" >
+      <p id="answerMessage"></p>
+    </div>
+    <div id="videoToPlay" class="hide">
+      <div id="player"></div>
+
+
+       <!-- <p> hidden</p> -->
+     <!-- <iframe id="framedVideoToPlay" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+   </div>
+
+
+
+
+    <div id="equationContainer" class="show">
+      <p class="equation" id="equation"></p>
+
+      <form class="equation" id="answerInputForm">
+        <input type="text" id="answerInput">
+        <button onclick="getAnswer(event)">Enter</button>
+      </form>
+
+    </div>
+
+    <div id="buttons">
+      <button onclick="nextButton(event)">Next </button>
+    </div>
+
+
+    <div class="footer">
+      <p>copyright 2022 Sam mckaig</p>
+      <a href="https://github.com/bboysamuel/mathgame">project</a>
+
+    </div>
+
+  </div>
+
+
+
+
+</body>
+</html>
+
+<script type="text/javascript" src="index.js">  </script>
+
+
+<script>
+
+  initMathToScreen()
+// let videoIdx = 5
+
+
+
+</script>
+
+
