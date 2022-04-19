@@ -48,6 +48,16 @@
         // },
         {
           videoTitle: "story bots",
+          ytId: 'GOR4YDdY9dk',
+          url: 'https://www.youtube.com/watch?v=GOR4YDdY9dk'
+        },
+        {
+          videoTitle: "story bots",
+          ytId: 'KECKqtKZXEE',
+          url: 'https://www.youtube.com/watch?v=KECKqtKZXEE'
+        },
+        {
+          videoTitle: "story bots",
           ytId: 'uqYfyza4e-c',
           url: 'https://www.youtube.com/watch?v=uqYfyza4e-c'
         },
@@ -75,16 +85,6 @@
           videoTitle: "story bots",
           ytId: 'i235Y2HRksA',
           url: 'https://www.youtube.com/watch?v=i235Y2HRksA'
-        },
-        {
-          videoTitle: "story bots",
-          ytId: 'GOR4YDdY9dk',
-          url: 'https://www.youtube.com/watch?v=GOR4YDdY9dk'
-        },
-        {
-          videoTitle: "story bots",
-          ytId: 'KECKqtKZXEE',
-          url: 'https://www.youtube.com/watch?v=KECKqtKZXEE'
         },
         {
           videoTitle: "story bots",
@@ -460,6 +460,7 @@ const initMathToScreen = () => {
     document.getElementById('answerInput').focus()
 
   }
+  makeBalloons()
 
   console.log('level', level, 'equationType', equationType)
 
@@ -643,3 +644,25 @@ const addCorrectAnswerImageToScreen = () => {
 ///// animations
 
 
+// grab balloon
+
+const makeBalloons = () => {
+  for (x=0; x < 9; x++) {
+  const balloon = document.createElement('div')
+  const p = document.createElement('p')
+  p.classList.add('balloonNum')
+  // p.innerText = '9'
+  // p.setAttribute('data-')
+  balloon.classList.add('balloon')
+  balloon.appendChild(p)
+  document.getElementById('balloons-container').appendChild(balloon)
+}
+}
+
+
+// repeat to dom 8 or how ever many
+// create 4random numbers.
+// add answer number.
+// print number on each
+// when clicked it fills the number in the answer and pops.
+// stop balloons when video plays.
