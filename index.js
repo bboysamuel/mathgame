@@ -640,3 +640,6 @@ const addCorrectAnswerImageToScreen = () => {
 // console.log('image', image)
 // document.getElementById('app').appendChild(image)
 
+///// animations
+
+

@@ -4,6 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+
   <!-- <script type="text/javascript" src="video.js">  </script> -->
   <!-- <script type="text/javascript" src="db/videoLists.js">  </script> -->
 
@@ -82,10 +83,30 @@
 
     </div>
 
+    <div class="balloons-conatiner" id="balloons-container">
+
+      <!-- infinite-->
+      <!-- <div id="balloon" class="balloon">
+        <p class="balloonNumbers">number</p>
+      </div> -->
+      <!-- <div class="balloon pink"   ></div>
+      <div class="balloon orange" ></div>
+      <div class="balloon blue"   ></div>
+      <div class="balloon yellow" ></div>
+      <div class="balloon purple" ></div>
+      <div class="balloon green"  ></div>
+      <div class="balloon cyan"   ></div>
+      <div class="balloon red"    ></div> -->
+  </div>
+
+
   </div>
 
 
 
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/gsap.min.js"></script>
 
 </body>
 </html>
@@ -94,6 +115,21 @@
 
 
 <script>
+
+  // grab balloon
+
+  for (x=0; x < 9; x++) {
+    const balloon = document.createElement('div')
+    balloon.classList.add('balloon')
+    document.getElementById('balloons-container').appendChild(balloon)
+  }
+
+  // repeat to dom 8 or how ever many
+  // create 4random numbers.
+  // add answer number.
+  // print number on each
+  // when clicked it fills the item and pops.
+
 
   initMathToScreen()
 // let videoIdx = 5
