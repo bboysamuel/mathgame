@@ -120,7 +120,12 @@
 
   for (x=0; x < 9; x++) {
     const balloon = document.createElement('div')
+    const p = document.createElement('p')
+    p.classList.add('balloonNum')
+    p.innerText = '9'
+    // p.setAttribute('data-')
     balloon.classList.add('balloon')
+    balloon.appendChild(p)
     document.getElementById('balloons-container').appendChild(balloon)
   }
 
@@ -128,7 +133,7 @@
   // create 4random numbers.
   // add answer number.
   // print number on each
-  // when clicked it fills the item and pops.
+  // when clicked it fills the number in the answer and pops.
 
 
   initMathToScreen()
