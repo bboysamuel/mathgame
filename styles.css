@@ -180,3 +180,7 @@
  .framedModal {
    padding-top: 5rem;
  }
+
+ .correctAnswerTallyImage {
+   width: 55px ;
+ }

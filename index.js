@@ -3,7 +3,7 @@
   let fullEquationData = {}
   let correctAnswersList = []
   let correctAnswersSetsList = []
-  let maxSetOfCorrectAnswers = 9
+  let maxSetOfCorrectAnswers = 4
   let maxNumberOfCorrectAnswersToMakeASet = 1
   let level = 1
   let equationType = 'addition'
@@ -384,6 +384,7 @@ const runVideo = (setNumber) => {
   document.getElementById('equationContainer').classList.add('hide')
 
 
+
   // console.log('videoIdx 1', videoIdx)
   // videoIdx = videoIdx +1
 
@@ -396,6 +397,9 @@ const runVideo = (setNumber) => {
 const addCorrectAnswerToAnswerList = (inputedAnswer) => {
   if(correctAnswersList.length < maxSetOfCorrectAnswers) {
     correctAnswersList.push(inputedAnswer)
+    setTimeout( () => {
+      nextButton()
+    }, 2000)
     // console.log('correctAnswersList', correctAnswersList)
   } else {
     //play video // when video is done remove video and wipe out correctanswer list
@@ -422,7 +426,7 @@ const checkAnswer = (inputedAnswer) => {
 
     answerMessageElement.innerHTML = correctAnswerMessage
     addCorrectAnswerToAnswerList(inputedAnswer)
-
+    addCorrectAnswerImageToScreen()
 
   } else {
 
@@ -474,6 +478,7 @@ const nextVideo = () => {
 
     document.getElementById('videoToPlay').classList.add('hide')
     document.getElementById('equationContainer').classList.remove('hide')
+    document.getElementById('correctAnswerImageContainer').innerHTML = ''
     clearInputs()
     player.loadVideoById(correctAnswerVideoList[videoIdx].ytId)
     player.stopVideo();
@@ -484,7 +489,7 @@ const nextVideo = () => {
 }
 
 const nextButton = (e) => {
-  e.preventDefault()
+  // e.preventDefault()
   clearInputs()
   initMathToScreen()
   // do a check if it's hidden
@@ -605,7 +610,7 @@ const getHelp = (e) => {
 }
 
 const removeHelp = (e) => {
-  e.preventDefault();
+  // e.preventDefault();
   document.getElementById('getHelp').innerHTML = `
     <button onclick="getHelp(event)">Get Help?</button>
     <div id="framedModal" class="framedModal">
@@ -619,4 +624,19 @@ const removeHelp = (e) => {
 <div id="framedModal" class="framedModal"></div>
 </div> */}
 
+
+const addCorrectAnswerImageToScreen = () => {
+  let image = document.createElement('img');
+  image.classList.add('correctAnswerTallyImage')
+  image.src = 'images/dragon.png';
+  document.getElementById('correctAnswerImageContainer').prepend(image)
+
+}
+
+// document.getElementById('correctAnswerImageContainer').innerHTML = ''
+
+// let image = document.createElement('img');
+// image.src = 'images/toothless-dragon.png';
+// console.log('image', image)
+// document.getElementById('app').appendChild(image)
 
