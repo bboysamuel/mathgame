@@ -457,10 +457,15 @@ const initMathToScreen = () => {
     const equation = `${finalEquation.equation} = `
     document.getElementById('equation').innerHTML = equation
     // answerInputForm.focus()
+    initHelpIcons(finalEquation)
+    fullEquationData = finalEquation
+    // makeBalloons()
+
+
     document.getElementById('answerInput').focus()
 
   }
-  makeBalloons()
+
 
   console.log('level', level, 'equationType', equationType)
 
@@ -492,10 +497,10 @@ const nextVideo = () => {
 const nextButton = (e) => {
   // e.preventDefault()
   clearInputs()
+  removeHelp(e)
   initMathToScreen()
   // do a check if it's hidden
   let equationContainer = document.getElementById('equationContainer')
-  removeHelp(e)
 
   if(equationContainer.classList.contains('hide')) {
     console.log('its hidden')
@@ -602,21 +607,33 @@ const autoGenerateAnswers = (finalEquation) => {
 
 const getHelp = (e) => {
   e.preventDefault();
-  document.getElementById('getHelp').innerHTML = `
-    <button onclick="removeHelp(event)">Remove Help</button>
-    <div id="framedModal" class="framedModal">
-      <iframe src="https://apps.mathlearningcenter.org/number-pieces" style="width: 800; height: 600;"></iframe>
-    </div>
-  `
+  // document.getElementById('getHelp').innerHTML =
+  // ` <button onclick="removeHelp(event)">Remove Help</button>
+  //   <div id="framedModal" class="framedModal"> </div>
+  // `
+
+
+  const framedModal = document.getElementById('framedModal')
+  console.log('framedModal', framedModal)
+  framedModal.classList.remove('hide')
+  // initHelpIcons()
+  //   <div id="framedModal" class="framedModal">
+  //     <iframe src="https://apps.mathlearningcenter.org/number-pieces" style="width: 800; height: 600;"></iframe>
+  //   </div>
+  // `
+
+  const button = document.getElementById('getHelpButton')
+  button.addEventListener('click',   removeHelp)
+  button.innerHTML = "hide help"
 }
 
 const removeHelp = (e) => {
-  // e.preventDefault();
-  document.getElementById('getHelp').innerHTML = `
-    <button onclick="getHelp(event)">Get Help?</button>
-    <div id="framedModal" class="framedModal">
-    </div>
-  `
+  e.preventDefault();
+  document.getElementById('framedModal').innerHTML = ''
+
+  const framedModal = document.getElementById('framedModal')
+  console.log('framedModal', framedModal)
+  framedModal.classList.add('hide')
 }
 
 
@@ -666,3 +683,36 @@ const makeBalloons = () => {
 // print number on each
 // when clicked it fills the number in the answer and pops.
 // stop balloons when video plays.
+
+const initHelpIcons = (finalEquation) => {
+  // const finalEquation = fullEquationData
+  let a = finalEquation.numOne
+  let b = finalEquation.numTwo
+  let sign = finalEquation.type
+
+  const divContainer = document.getElementById('framedModal')
+
+  for (let x = 0; x < a; x ++) {
+
+    let image = document.createElement('img');
+    image.classList.add('correctAnswerTallyImage')
+    image.src = 'images/dragon1.png';
+    divContainer.appendChild(image)
+
+  }
+
+  let plusSign = document.createElement('p')
+  plusSign.classList.add('plusSign')
+  plusSign.innerText = sign
+
+  divContainer.appendChild(plusSign)
+
+  for (let x = 0; x < b; x ++) {
+    let image = document.createElement('img');
+    image.classList.add('needHelpIcon')
+    image.src = 'images/dragon1.png';
+    divContainer.appendChild(image)
+  }
+
+}
+// initHelpIcons()

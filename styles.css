@@ -151,9 +151,7 @@
    font-size: 1.5rem;
  }
 
- .hide {
-   display: none;
- }
+
 
  .footer {
    padding: 3rem;
@@ -177,18 +175,40 @@
    background-color: red;
  }
 
+ .getHelp {
+   align-content: center;
+   display: grid;
+
+ }
  .framedModal {
+  /* display: grid; */
+   grid-template-columns: repeat(5, 1fr) ;
    padding-top: 5rem;
+   /* align-content: center; */
+
  }
 
  .correctAnswerTallyImage {
    width: 55px ;
+   color: grey;
+ }
+ .needHelpIcon {
+   width: 55px ;
+   color: grey;
  }
 
  .box {
   width: 100px;
   height: 100px;
   background: green;
+}
+
+.plusSign {
+  font-size: 4rem;
+}
+
+.hide {
+  display: none;
 }
 
 
