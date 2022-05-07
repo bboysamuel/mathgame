@@ -3,7 +3,7 @@
   let fullEquationData = {}
   let correctAnswersList = []
   let correctAnswersSetsList = []
-  let maxSetOfCorrectAnswers = 4
+  let maxSetOfCorrectAnswers = 2
   let maxNumberOfCorrectAnswersToMakeASet = 1
   let level = 1
   let equationType = 'addition'
@@ -427,6 +427,7 @@ const checkAnswer = (inputedAnswer) => {
     answerMessageElement.innerHTML = correctAnswerMessage
     addCorrectAnswerToAnswerList(inputedAnswer)
     addCorrectAnswerImageToScreen()
+    // showBalloons()
 
   } else {
 
@@ -437,6 +438,16 @@ const checkAnswer = (inputedAnswer) => {
   document.getElementById('answerInput').focus()
 
 
+}
+
+const showBalloons = () => {
+  const balloonContainer = document.getElementById('balloons-container')
+  balloonContainer.classList.remove("hide")
+}
+
+const hideBalloons = () => {
+  const balloonContainer = document.getElementById('balloons-container')
+  balloonContainer.classList.add("hide")
 }
 
 
@@ -460,6 +471,7 @@ const initMathToScreen = () => {
     initHelpIcons(finalEquation)
     fullEquationData = finalEquation
     // makeBalloons()
+    // hideBalloons()
 
 
     document.getElementById('answerInput').focus()
@@ -495,7 +507,7 @@ const nextVideo = () => {
 }
 
 const nextButton = (e) => {
-  // e.preventDefault()
+  e.preventDefault()
   clearInputs()
   removeHelp(e)
   initMathToScreen()
@@ -607,22 +619,15 @@ const autoGenerateAnswers = (finalEquation) => {
 
 const getHelp = (e) => {
   e.preventDefault();
-  // document.getElementById('getHelp').innerHTML =
-  // ` <button onclick="removeHelp(event)">Remove Help</button>
-  //   <div id="framedModal" class="framedModal"> </div>
-  // `
 
 
   const framedModal = document.getElementById('framedModal')
   console.log('framedModal', framedModal)
   framedModal.classList.remove('hide')
   // initHelpIcons()
-  //   <div id="framedModal" class="framedModal">
-  //     <iframe src="https://apps.mathlearningcenter.org/number-pieces" style="width: 800; height: 600;"></iframe>
-  //   </div>
-  // `
 
   const button = document.getElementById('getHelpButton')
+  button.removeEventListener('click', getHelp)
   button.addEventListener('click',   removeHelp)
   button.innerHTML = "hide help"
 }
@@ -634,6 +639,10 @@ const removeHelp = (e) => {
   const framedModal = document.getElementById('framedModal')
   console.log('framedModal', framedModal)
   framedModal.classList.add('hide')
+
+  const button = document.getElementById('getHelpButton')
+  button.addEventListener('click',   getHelp)
+  button.innerHTML = "help"
 }
 
 
