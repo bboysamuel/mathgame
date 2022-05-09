@@ -173,24 +173,17 @@
 
 
   const selectLevel = (e) => {
-    // level = ''
     level = Number(e.target.innerHTML)
-        // ### TODO - set to screen You are on level 1.
         // if(level !== '') {
           let levelButtonElement = document.getElementById('dropbtnLevel')
           levelButtonElement.innerHTML = `Level ${level}`
         // }
-
-    // console.log('level', level)
     initMathToScreen()
 
   }
 
   const selectEquationType = (e) => {
-    // equationType = []
-    // equationType.push(e.target.innerHTML) // NOTE: TODO. to do multiple make an array later.
     equationType = e.target.innerHTML
-
     // if(equationType !== '') {
       const mathTypeButtonMathType = document.getElementById('dropbtnMathType')
       mathTypeButtonMathType.innerHTML = `${equationType}`
@@ -239,8 +232,6 @@ const doSubtraction = (numToRandomize) => {
        answer = numTwo - numOne
        equation = `${numTwo} - ${numOne}`
     }
-    // const answer = numOne - numTwo
-    // const equation = `${numOne} - ${numTwo}`
 
 
   const equationData =  {
@@ -260,9 +251,9 @@ const doMultiply = (numToRandomize) => {
 
     const numOne = Math.floor(Math.random() * numToRandomize)
     const numTwo = Math.floor(Math.random() * numToRandomize)
-    const type = '*'
+    const type = 'X'
     const answer = numOne * numTwo
-    const equation = `${numOne} * ${numTwo}`
+    const equation = `${numOne} x ${numTwo}`
 
 
   const equationData =  {
@@ -317,7 +308,6 @@ const doDivide = (numToRandomize) => {
     equation: equation,
   }
 
-  console.log('equationData', equationData)
 
   return equationData
 
@@ -375,20 +365,9 @@ const getAnswer = (e) => {
 
 
 const runVideo = (setNumber) => {
-  // console.log('videolistid', correctAnswerVideoList[setNumber])
 
-  // document.getElementById('framedVideoToPlay').src = `https://www.youtube.com/embed/${correctAnswerVideoList[setNumber]}`
-
-  // videoPlayer(correctAnswerVideoList[7].ytId)
-
-  // do the logic to change video id. switch to hide.
   document.getElementById('videoToPlay').classList.remove('hide')
   document.getElementById('equationContainer').classList.add('hide')
-
-
-
-  // console.log('videoIdx 1', videoIdx)
-  // videoIdx = videoIdx +1
 
 
 }
@@ -402,13 +381,8 @@ const addCorrectAnswerToAnswerList = (inputedAnswer) => {
     setTimeout( () => {
       nextButton()
     }, 2000)
-    // console.log('correctAnswersList', correctAnswersList)
   } else {
-    //play video // when video is done remove video and wipe out correctanswer list
 
-    // console.log('maxSetOfCorrectAnswers', maxSetOfCorrectAnswers)
-    // videoIdx = videoIdx +1
-    // console.log('videoIdx in addCorrectAnswerToAnswerList', videoIdx)
     runVideo()
   }
 
@@ -462,18 +436,10 @@ const initMathToScreen = () => {
   } else {
     answerInputForm.classList.remove('hide')
     const finalEquation = createMathEquation(level, equationType)
-    // do answers here
-    // const randomWrongAnswers = autoGenerateAnswers(finalEquation)
-    // const correctAnswer = finalEquation.answer
-    // console.log('randomWrongAnswers initMathToScreen', randomWrongAnswers)
-    // console.log('randomWrongAnswers initMathToScreen', correctAnswer)
+
     const equation = `${finalEquation.equation} = `
     document.getElementById('equation').innerHTML = equation
-    // answerInputForm.focus()
     initHelpIcons(finalEquation)
-    // fullEquationData = finalEquation
-    // makeBalloons()
-    // hideBalloons()
 
 
     document.getElementById('answerInput').focus()
@@ -588,14 +554,7 @@ player.stopVideo();
 
 // }
 
-// makeYoutubeVideo()
 
-// make largest number always 1st.
-//make egg hatch.
-//put answer after = sign
-
-// ====================================
-// ============================
 
 
 const autoGenerateAnswers = (finalEquation) => {
@@ -614,8 +573,6 @@ const autoGenerateAnswers = (finalEquation) => {
 
 
 
-    // const numOne = Math.floor(Math.random() * numToRandomize)
-
   } while (randomAnswersArray.length < 4)
   console.log('randomAnswersArray', randomAnswersArray)
   console.log('finalEquation.answer', finalEquation.answer)
@@ -628,16 +585,12 @@ const getHelp = (e) => {
 
 
   const framedModal = document.getElementById('framedModal')
-  // console.log('framedModal', framedModal)
   framedModal.classList.remove('hide')
-  // initHelpIcons()
 
   const button = document.getElementById('getHelpButton')
   button.removeEventListener('click', getHelp)
   button.addEventListener('click',   removeHelp)
   button.innerHTML = "hide help"
-    console.log('framedModal in get', framedModal)
-    console.log('button in get', button)
 
 }
 
@@ -646,24 +599,17 @@ const removeHelp = (e) => {
   document.getElementById('framedModal').innerHTML = ''
 
   const framedModal = document.getElementById('framedModal')
-  // console.log('framedModal', framedModal)
   framedModal.classList.add('hide')
 
   const button = document.getElementById('getHelpButton')
   button.removeEventListener('click', removeHelp)
   button.addEventListener('click',   getHelp)
   button.innerHTML = "help"
-    console.log('framedModal in remove', framedModal)
-    console.log('button in remove', button)
+
 
 
 }
 
-
-{/* <div id="getHelp" class="framedModal">
-<button onclick="getHelp(event)">need help?</button>
-<div id="framedModal" class="framedModal"></div>
-</div> */}
 
 
 const addCorrectAnswerImageToScreen = () => {
@@ -673,18 +619,6 @@ const addCorrectAnswerImageToScreen = () => {
   document.getElementById('correctAnswerImageContainer').prepend(image)
 
 }
-
-// document.getElementById('correctAnswerImageContainer').innerHTML = ''
-
-// let image = document.createElement('img');
-// image.src = 'images/toothless-dragon.png';
-// console.log('image', image)
-// document.getElementById('app').appendChild(image)
-
-///// animations
-
-
-// grab balloon
 
 const makeBalloons = () => {
   for (x=0; x < 9; x++) {
