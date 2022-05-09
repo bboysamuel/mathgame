@@ -4,8 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <!-- <script type="text/javascript" src="video.js">  </script> -->
-  <!-- <script type="text/javascript" src="db/videoLists.js">  </script> -->
+
 
   <title>math game by sam</title>
 </head>
@@ -13,9 +12,8 @@
 
   <div id="app">
 
-    <h2>Welcome To Elia's Math Game</h2>
-    <!-- <h2>Ready To Play?</h2> -->
-    <!-- <h4>Answer 10 questions correctly and you get to watch a cool video</h4> -->
+    <h2>Elia's Dragon Math Game</h2>
+
     <div id="optionsButtons">
       <div class="dropdown">
         <button id="dropbtnLevel" class="dropbtnLevel">Level</button>
@@ -41,8 +39,10 @@
 
     <!-- <div id="player"></div> -->
     <div id="answerMessageContainer" >
+      <div id="correctAnswerImageContainer"></div>
       <p id="answerMessage"></p>
     </div>
+
     <div id="videoToPlay" class="hide">
       <div id="player"></div>
 
@@ -66,24 +66,28 @@
 
     <div id="buttons" class="buttons">
       <button class="submitButton" onclick="getAnswer(event)">Submit Answer</button>
-      <button class="nextButton" onclick="nextButton(event)">Next Question </button>
+      <button class="nextButton" onclick="nextButton(event)">Skip </button>
     </div>
 
-    <div id="getHelp" class="framedModal">
-      <button onclick="getHelp(event)">need help?</button>
-      <div id="framedModal" class="framedModal"></div>
+    <div id="getHelp" class="getHelp">
+      <button id="getHelpButton" onclick="getHelp(event)">help</button>
+      <div id="framedModal" class="framedModal hide"></div>
     </div>
 
     <div class="footer">
-      <p>copyright 2022 Sam mckaig</p>
+      <p>copyright 2022 Sam Mckaig</p>
       <p> <a href="https://github.com/bboysamuel/mathgame">Github</a> </p>
 
     </div>
+
 
   </div>
 
 
 
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/gsap.min.js"></script>
 
 </body>
 </html>
@@ -92,6 +96,9 @@
 
 
 <script>
+
+
+
 
   initMathToScreen()
 // let videoIdx = 5

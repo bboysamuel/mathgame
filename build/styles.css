@@ -151,9 +151,7 @@
    font-size: 1.5rem;
  }
 
- .hide {
-   display: none;
- }
+
 
  .footer {
    padding: 3rem;
@@ -164,7 +162,7 @@
  #player {
    /* border: 3px solid black; */
    /* background-color: black; */
-   padding: 3rem;
+   padding: 1.5rem;
  }
 
  a {
@@ -177,6 +175,41 @@
    background-color: red;
  }
 
- .framedModal {
-   padding-top: 5rem;
+ .getHelp {
+   padding-top: 4rem;
+   align-content: center;
+   display: grid;
+
  }
+ .framedModal {
+  /* display: grid; */
+   grid-template-columns: repeat(5, 1fr) ;
+   padding-top: 3rem;
+   /* align-content: center; */
+
+ }
+
+ .correctAnswerTallyImage {
+   width: 55px ;
+   color: grey;
+ }
+ .needHelpIcon {
+   width: 55px ;
+   color: grey;
+ }
+
+ .box {
+  width: 100px;
+  height: 100px;
+  background: green;
+}
+
+.plusSign {
+  font-size: 4rem;
+}
+
+.hide {
+  display: none;
+}
+
+
