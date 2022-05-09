@@ -368,6 +368,8 @@ const getAnswer = (e) => {
   const inputedAnswerString = document.getElementById('answerInput').value
   const inputedAnswerNumber = Number(inputedAnswerString)
   checkAnswer(inputedAnswerNumber)
+  window.scrollTo(0, 0);
+
 
 }
 
@@ -469,7 +471,7 @@ const initMathToScreen = () => {
     document.getElementById('equation').innerHTML = equation
     // answerInputForm.focus()
     initHelpIcons(finalEquation)
-    fullEquationData = finalEquation
+    // fullEquationData = finalEquation
     // makeBalloons()
     // hideBalloons()
 
@@ -500,14 +502,15 @@ const nextVideo = () => {
     clearInputs()
     player.loadVideoById(correctAnswerVideoList[videoIdx].ytId)
     player.stopVideo();
-    initMathToScreen()
 
     correctAnswersList = []
+    initMathToScreen()
+
 
 }
 
 const nextButton = (e) => {
-  e.preventDefault()
+  // e.preventDefault()
   clearInputs()
   removeHelp(e)
   initMathToScreen()
@@ -618,11 +621,11 @@ const autoGenerateAnswers = (finalEquation) => {
 }
 
 const getHelp = (e) => {
-  e.preventDefault();
+  // e.preventDefault();
 
 
   const framedModal = document.getElementById('framedModal')
-  console.log('framedModal', framedModal)
+  // console.log('framedModal', framedModal)
   framedModal.classList.remove('hide')
   // initHelpIcons()
 
@@ -630,19 +633,27 @@ const getHelp = (e) => {
   button.removeEventListener('click', getHelp)
   button.addEventListener('click',   removeHelp)
   button.innerHTML = "hide help"
+    console.log('framedModal in get', framedModal)
+    console.log('button in get', button)
+
 }
 
 const removeHelp = (e) => {
-  e.preventDefault();
+  // e.preventDefault();
   document.getElementById('framedModal').innerHTML = ''
 
   const framedModal = document.getElementById('framedModal')
-  console.log('framedModal', framedModal)
+  // console.log('framedModal', framedModal)
   framedModal.classList.add('hide')
 
   const button = document.getElementById('getHelpButton')
+  button.removeEventListener('click', removeHelp)
   button.addEventListener('click',   getHelp)
   button.innerHTML = "help"
+    console.log('framedModal in remove', framedModal)
+    console.log('button in remove', button)
+
+
 }
 
 
@@ -713,7 +724,6 @@ const initHelpIcons = (finalEquation) => {
   let plusSign = document.createElement('p')
   plusSign.classList.add('plusSign')
   plusSign.innerText = sign
-
   divContainer.appendChild(plusSign)
 
   for (let x = 0; x < b; x ++) {

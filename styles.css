@@ -162,7 +162,7 @@
  #player {
    /* border: 3px solid black; */
    /* background-color: black; */
-   padding: 3rem;
+   padding: 1.5rem;
  }
 
  a {
@@ -184,7 +184,7 @@
  .framedModal {
   /* display: grid; */
    grid-template-columns: repeat(5, 1fr) ;
-   padding-top: 5rem;
+   padding-top: 3rem;
    /* align-content: center; */
 
  }
