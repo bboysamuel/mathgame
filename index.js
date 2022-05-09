@@ -486,12 +486,15 @@ const initMathToScreen = () => {
 
 }
 
+const makeRandomVideoNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
 const nextVideo = () => {
 
     if (videoIdx === correctAnswerVideoList.length) {
       videoIdx = 0
     } else {
-      videoIdx = videoIdx + 1
+      // videoIdx = videoIdx + 1
+      videoIdx = makeRandomVideoNumber(0, correctAnswerVideoList.length)
     }
     console.log('videoIdx4', videoIdx)
 
