@@ -11,8 +11,8 @@
   let testNums = [
     10, // completed
     5, // working on
-    2, // workin on
-    // 4,
+    2, // working on
+    4, // working on
     // 8,
     // 3,
     // 6,
@@ -25,10 +25,8 @@
       let levelButtonElement = document.getElementById('dropbtnLevel')
       if(level === 0 ) {
         levelButtonElement.innerHTML = `custom`
-        console.log('haha')
       } else {
         levelButtonElement.innerHTML = `Level ${level}`
-        console.log('noooo')
 
       }
 
@@ -40,30 +38,9 @@
     initDom()
 
 
-
   // https://developers.google.com/youtube/iframe_api_reference#Playback_status
   //
   const correctAnswerVideoList = [
-        // {
-        //   videoTitle: "sammy Styles trailer",
-        //   ytId: 'jK8I37sHQjg',
-        //   url: 'https://www.youtube.com/watch?v=jK8I37sHQjg'
-        // },
-        // {
-        //   videoTitle: "sammy Styles trailer",
-        //   ytId: '7-Fe9bzDVAk',
-        //   url: 'https://www.youtube.com/watch?v=7-Fe9bzDVAk'
-        // },
-        // {
-        //   videoTitle: "sammy Styles trailer",
-        //   ytId: '7-Fe9bzDVAk',
-        //   url: 'https://www.youtube.com/watch?v=xAtvik8N_8c'
-        // },
-        // {
-        //   videoTitle: "sammy Styles trailer",
-        //   ytId: 'GtpUesWmJkI',
-        //   url: 'https://www.youtube.com/watch?v=GtpUesWmJkI'
-        // },
         {
           videoTitle: "story bots",
           ytId: 'GOR4YDdY9dk',
@@ -251,7 +228,6 @@ const doAddition = (numToRandomize) => {
 
   return equationData
 
-
 }
 
 const doSubtraction = (numToRandomize) => {
@@ -280,7 +256,6 @@ const doSubtraction = (numToRandomize) => {
 
   return equationData
 
-
 }
 
 const customTestNumbers = (baseNumbers) => {
@@ -292,34 +267,17 @@ const customTestNumbers = (baseNumbers) => {
 // }
 };
 
-// const customTestNumbersForDivision = (nums) => {
-//   const customEquations = [];
-//   // const nums = [10, 5, 2, 4, 8, 3, 6, 7];
-//    nums = [10, 2, 4, 8, 3, 6, 7
-//   ];
 
-//   nums.forEach(num => {
-//     for (let i = 1; i <= 10; i++) {
-//       console.log('num', num)
-//       // if (num % i === 0) { // Ensures we only get whole number answers. // not needed i think.
-//         customEquations.push({ numOne: i * num, numTwo: num});
-//       // }
-//     }
-//   });
-// console.log('customEquations1', customEquations)
-//   return customEquations;
-// };
 
 const customTestNumbersForDivision = (nums) => {
   const customEquations = [];
     //  nums = [10, 5, 2, 4, 8, 3, 6, 7, 9]
 
-  // Removed constant redeclaration of nums here, as it should be passed as an argument to the function.
   nums.forEach(num => {
     for (let i = 1; i <= 10; i++) {
       const product = i * num;
       customEquations.push({ numOne: product, numTwo: num }); // This is a/b = c
-      if (i !== 1 && i !== num) { // To avoid duplicate and trivial equations such as 10/1=10 and 10/10=1
+      if (i !== 1 && i !== num) {
         customEquations.push({ numOne: product, numTwo: i }); // This is a/c = b
       }
     }
@@ -329,7 +287,6 @@ const customTestNumbersForDivision = (nums) => {
 
 const customDivisionEquations = () => {
   const divideBy = testNums
-  // const divideBy = [10, 5, 2, 4, 8, 3, 6, 7];
   const customEquations = customTestNumbersForDivision(divideBy);
 
   const randomIndex = Math.floor(Math.random() * customEquations.length);
@@ -395,18 +352,8 @@ const doMultiply = (numToRandomize) => {
 
   }
 
-
-
 }
 
-// const divisionData = (a, b) => {
-//   let answer
-//   let equation
-//         if(a % b === 0) {
-//           answer = a / b
-//           equation = `${a} / ${b}`
-//       }
-// }
 
 const doDivide = (numToRandomize) => {
   if (!numToRandomize) {
@@ -757,8 +704,6 @@ const removeHelp = (e) => {
   button.removeEventListener('click', removeHelp)
   button.addEventListener('click',   getHelp)
   button.innerHTML = "help"
-
-
 
 }
 
