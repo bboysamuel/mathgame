@@ -189,6 +189,20 @@
 
  }
 
+ .framedModal .group {
+  border: 3px solid red;
+  padding: 5px;
+  margin: 5px;
+}
+
+/* .group {
+  margin-bottom: 10px;
+}
+.operationSign {
+  font-size: 24px;
+  margin: 0 5px;
+} */
+
  .correctAnswerTallyImage {
    width: 55px ;
    color: grey;
