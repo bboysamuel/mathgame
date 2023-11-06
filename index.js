@@ -3,16 +3,20 @@
   let fullEquationData = {}
   let correctAnswersList = []
   let correctAnswersSetsList = []
-  let maxSetOfCorrectAnswers = 2
+  let maxSetOfCorrectAnswers = 9
   let maxNumberOfCorrectAnswersToMakeASet = 1
-  let level = 1
-  let equationType = 'addition'
+  let level = 0
+  let equationType = 'multiplication'
   let videoIdx = 0
 
 
     const initDom = () => {
       let levelButtonElement = document.getElementById('dropbtnLevel')
-      levelButtonElement.innerHTML = `Level ${level}`
+      if(level === 0 ) {
+        levelButtonElement.innerHTML = `custom`
+      } else {
+        levelButtonElement.innerHTML = `Level ${level}`
+      }
 
       const mathTypeButtonMathType = document.getElementById('dropbtnMathType')
       mathTypeButtonMathType.innerHTML = `${equationType}`
@@ -50,6 +54,21 @@
           videoTitle: "story bots",
           ytId: 'GOR4YDdY9dk',
           url: 'https://www.youtube.com/watch?v=GOR4YDdY9dk'
+        },
+        {
+          videoTitle: "101 dal",
+          ytId: '6PydtFfyFtY',
+          url: 'https://www.youtube.com/watch?v=6PydtFfyFtY'
+        },
+        {
+          videoTitle: "song",
+          ytId: 'fJqzizJprOk',
+          url: 'https://www.youtube.com/watch?v=fJqzizJprOk'
+        },
+        {
+          videoTitle: "story bots",
+          ytId: 'p2xikumJDAY',
+          url: 'https://www.youtube.com/watch?v=p2xikumJDAY'
         },
         {
           videoTitle: "story bots",
@@ -174,10 +193,14 @@
 
   const selectLevel = (e) => {
     level = Number(e.target.innerHTML)
-        // if(level !== '') {
+        if(level !== '') {
           let levelButtonElement = document.getElementById('dropbtnLevel')
-          levelButtonElement.innerHTML = `Level ${level}`
-        // }
+          if(level === 0 ) {
+            levelButtonElement.innerHTML = `custom`
+          } else {
+            levelButtonElement.innerHTML = `Level ${level}`
+          }
+        }
     initMathToScreen()
 
   }
@@ -193,7 +216,6 @@
     initMathToScreen()
 
   }
-
 
 
 const doAddition = (numToRandomize) => {
@@ -247,8 +269,75 @@ const doSubtraction = (numToRandomize) => {
 
 }
 
-const doMultiply = (numToRandomize) => {
+const customTestNumbers = (baseNumbers) => {
+  return baseNumbers.flatMap(num => {
+    return Array.from({ length: 9 }, (_, i) => ({ numOne: num, numTwo: i + 2 }));
+  });
+};
 
+
+const customMultiplicationEquations = () => {
+  // Define an array of custom equations with only numOne and numTwo
+  // console.log('yahh')
+  const multiplyBy = [10, 5, 2, 4, 8, 3, 6, 7]
+  const customEquations = customTestNumbers(multiplyBy)
+  // const customEquations = [
+  //   { numOne: 5, numTwo: 5 },
+  //   { numOne: 2, numTwo: 3 },
+  //   { numOne: 7, numTwo: 8 }
+  // ];
+
+
+
+// // testOneMultiply x 10s
+// for (let i = 2; i <= 10; i++) {
+//   customEquations.push({ numOne: 10, numTwo: i });
+// }
+// // testTwo multiply x 5's
+// for (let i = 2; i <=10; i ++) {
+//   customEquations.push({numOne: 5, numTwo: i})
+// }
+// // testThree x 2's
+// for (let i = 2; i <= 10; i++) {
+//   customEquations.push({numOne: 2, numTwo: i})
+// }
+// //testFour x 4's
+// for (let i = 2; i <= 10; i++) {
+//   customEquations.push({numOne: 4, numTwo: i})
+// }
+// //testFive x8's
+// for (let i = 2; i <= 10; i++) {
+//   customEquations.push({numOne: 8, numTwo: i})
+// }
+console.log('customEquations', customEquations)
+  // Randomly select one of the custom equations
+  const randomIndex = Math.floor(Math.random() * customEquations.length);
+  const selectedEquation = customEquations[randomIndex];
+
+  if (Math.random() > 0.5) { // gives 50/50 chance
+    [selectedEquation.numOne, selectedEquation.numTwo] = [selectedEquation.numTwo, selectedEquation.numOne];
+  }
+
+  // Calculate the answer
+  const answer = selectedEquation.numOne * selectedEquation.numTwo;
+
+  // Construct and return the equation data
+  return {
+    numOne: selectedEquation.numOne,
+    numTwo: selectedEquation.numTwo,
+    type: 'X',
+    answer: answer,
+    equation: `${selectedEquation.numOne} x ${selectedEquation.numTwo}`,
+  };
+};
+
+
+
+const doMultiply = (numToRandomize) => {
+console.log('numToRandomize', numToRandomize)
+  if(!numToRandomize) {
+    return customMultiplicationEquations()
+  } else {
     const numOne = Math.floor(Math.random() * numToRandomize)
     const numTwo = Math.floor(Math.random() * numToRandomize)
     const type = 'X'
@@ -265,6 +354,9 @@ const doMultiply = (numToRandomize) => {
   }
 
   return equationData
+
+  }
+
 
 
 }
@@ -331,6 +423,10 @@ const createMathEquation = (level, type) => {
       case 4:
         numToRandomize = 100
         break;
+        case 0:
+          numToRandomize = null
+          break;
+
     }
 
   switch(type) {
