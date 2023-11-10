@@ -3,11 +3,11 @@
   let fullEquationData = {}
   let correctAnswersList = []
   let correctAnswersSetsList = []
-  let maxSetOfCorrectAnswers = 9
+  let maxSetOfCorrectAnswers = 20
   let maxNumberOfCorrectAnswersToMakeASet = 1
   let level = 0
   let equationType = 'multiplication'
-  let videoIdx = 0
+  let videoIdx = Math.floor(Math.random() * 20)
   let testNums = [
     10, // completed
     5, // working on
