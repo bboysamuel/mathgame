@@ -3,13 +3,14 @@
   let fullEquationData = {}
   let correctAnswersList = []
   let correctAnswersSetsList = []
-  let maxSetOfCorrectAnswers = 20
+  // let videosPlayed = []
+  let maxSetOfCorrectAnswers = 19
   let maxNumberOfCorrectAnswersToMakeASet = 1
   let level = 0
   let equationType = 'multiplication'
   let videoIdx = Math.floor(Math.random() * 20)
   let testNums = [
-    10, // completed
+    // 10, // completed
     5, // working on
     2, // working on
     4, // working on
@@ -41,6 +42,46 @@
   // https://developers.google.com/youtube/iframe_api_reference#Playback_status
   //
   const correctAnswerVideoList = [
+        {
+          videoTitle: "2 x math song",
+          ytId: 'wabNCMpofoQ',
+          url: 'https://www.youtube.com/watch?v=wabNCMpofoQ'
+        },
+        {
+          videoTitle: "3 x math song",
+          ytId: 'E0uJ-BCyesI',
+          url: 'https://www.youtube.com/watch?v=E0uJ-BCyesI'
+        },
+        {
+          videoTitle: "4 x math song",
+          ytId: 'CDbzkIEP8f8',
+          url: 'https://www.youtube.com/watch?v=CDbzkIEP8f8'
+        },
+        {
+          videoTitle: "5 x math song",
+          ytId: 'n87_WuXAzC0',
+          url: 'https://www.youtube.com/watch?v=n87_WuXAzC0'
+        },
+        {
+          videoTitle: "6 x table song",
+          ytId: 'gHOkoBxmbTE',
+          url: 'https://www.youtube.com/watch?v=gHOkoBxmbTE'
+        },
+        {
+          videoTitle: "7 x table song",
+          ytId: 'TpUNRjZm7xI',
+          url: 'https://www.youtube.com/watch?v=TpUNRjZm7xI'
+        },
+        {
+          videoTitle: "8 x table song",
+          ytId: 'mK4d0rAl7Qo',
+          url: 'https://www.youtube.com/watch?v=mK4d0rAl7Qo'
+        },
+        {
+          videoTitle: "9 x table song",
+          ytId: '8QSece7YbYg',
+          url: 'https://www.youtube.com/watch?v=8QSece7YbYg'
+        },
         {
           videoTitle: "story bots",
           ytId: 'GOR4YDdY9dk',
@@ -558,16 +599,27 @@ const initMathToScreen = () => {
   // console.log('level', level, 'equationType', equationType)
 }
 
-const makeRandomVideoNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+// const makeRandomVideoNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+const makeRandomVideoNumber = (min, max, videosPlayed) => {
+  let randomVideoNumber;
+  do {
+      randomVideoNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+  } while (videosPlayed.includes(randomVideoNumber));
+  return randomVideoNumber;
+};
+
 
 const nextVideo = () => {
+  let videosPlayedIndexes = []
 
-    if (videoIdx === correctAnswerVideoList.length) {
-      videoIdx = 0
-    } else {
+    // if (videoIdx === correctAnswerVideoList.length) {
+    //   videoIdx = 0
+    // } else {
       // videoIdx = videoIdx + 1
-      videoIdx = makeRandomVideoNumber(0, correctAnswerVideoList.length)
-    }
+      videoIdx = makeRandomVideoNumber(0, correctAnswerVideoList.length, videosPlayedIndexes)
+      videosPlayedIndexes.push(videoIdx)
+    // }
     // console.log('videoIdx4', videoIdx)
 
     document.getElementById('videoToPlay').classList.add('hide')
